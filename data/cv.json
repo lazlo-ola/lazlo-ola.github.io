@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "source": {
+      "type": "pdf",
+      "title": "László Oláh CV"
+    }
+  },
+  "basics": {
+    "name": "László Oláh",
+    "label": "Raktáros és targoncavezető",
+    "image": "assets/images/laszlo-olah.png",
+    "website": "https://lazlo-ola.github.io",
+    "email": "laszlo.zsolt.olah@proton.me",
+    "phone": "+36707572848",
+    "location": "Vác",
+    "profiles": []
+  },
+  "summary": [
+    "Tapasztalt raktáros és targoncavezető vagyok, több éves gyakorlattal raktári anyagmozgatásban és áruösszekészítésben. Emellett termelési környezetben gépkezelőként is dolgoztam, ahol rugógyártó gépsor beállítása és kezelése volt a feladatom."
+  ],
+  "work": [
+    {
+      "company": "Revotica Kft",
+      "position": "Gépkezelő",
+      "location": "Budapest, XVII. kerület, Magyarország",
+      "start": "2025-01",
+      "end": "2026-06",
+      "highlights": [
+        "Rugógyártó gépsor beállítása és kezelése",
+        "A gyártási folyamat folyamatos felügyelete",
+        "Alapanyagok előkészítése és a gép kiszolgálása",
+        "Kisebb működési problémák felismerése, jelzése",
+        "A munkaterület és a berendezések rendben tartása"
+      ],
+      "technologies": []
+    },
+    {
+      "company": "VAJDA-PAPÍR Kft.",
+      "position": "Raktáros targoncavezető",
+      "location": "Budapest, XXIII. kerület, Magyarország",
+      "start": "2018-02",
+      "end": "2024-08",
+      "highlights": [
+        "Áruk és alapanyagok raktári mozgatása targoncával",
+        "Beérkező és kimenő áruk kezelése",
+        "Komissiózás, árumozgatás és betárolás",
+        "Teherautók rakodása és lerakodása",
+        "Raktári rend fenntartása",
+        "Raktári adminisztráció / vonalkódolvasó használata",
+        "Leltározásban való részvétel"
+      ],
+      "technologies": []
+    },
+    {
+      "company": "PICK SZEGED",
+      "position": "Áruösszekészítő",
+      "location": "Budapest, XXIII. kerület, Magyarország",
+      "start": "2015-07",
+      "end": "2017-11",
+      "highlights": [
+        "Megrendelések szerinti áruösszekészítés",
+        "Termékek azonosítása, válogatása és raklapra rendezése",
+        "Kész áruk mozgatása",
+        "Komissiózási feladatok végrehajtása",
+        "Raktári rend fenntartása"
+      ],
+      "technologies": []
+    }
+  ],
+  "skills": {
+    "technical": [
+      {
+        "group": "Raktározás és termelés",
+        "items": [
+          {
+            "name": "Targoncavezetés"
+          },
+          {
+            "name": "Raktári anyagmozgatás"
+          },
+          {
+            "name": "Áruösszekészítés"
+          },
+          {
+            "name": "Komissiózás"
+          },
+          {
+            "name": "Gépsorok kezelése és beállítása"
+          },
+          {
+            "name": "Termelési környezetben szerzett tapasztalat"
+          }
+        ]
+      }
+    ],
+    "soft": []
+  },
+  "education": [
+    {
+      "institution": "KAV Közlekedési Alkalmassági és Vizsgaközpont Nonprofit Kft.",
+      "area": "Építő- és anyagmozgató gép kezelője - Targoncavezető",
+      "location": "Magyarország",
+      "start": "2019-03",
+      "end": "2019-06"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Angol",
+      "fluency": "Alapfok/társalgási szint"
+    }
+  ],
+  "extras": {
+    "footerLink": {
+      "label": "László Oláh",
+      "url": "https://lazlo-ola.github.io"
+    }
+  }
+}

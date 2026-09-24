@@ -1,0 +1,206 @@
+/**
+ * Theme Switcher CSS
+ * Toggles between modern light and original dark themes
+ */
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.2);
+}
+
+.theme-toggle i {
+    font-size: 16px;
+}
+
+/* Dark Theme Variables - Updated colors for better dark theme experience */
+[data-theme="dark"] {
+    --primary-color: #4f8cc9;
+    --secondary-color: #6b7c93;
+    --accent-color: #8497bc;
+    --background-color: #19202e;
+    --surface-color: #28344a;
+    --text-primary: #d7dde9;
+    --text-secondary: #a5b3ce;
+    --border-color: rgba(255, 255, 255, 0.2);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark Theme Specific Overrides */
+[data-theme="dark"] body {
+    background: var(--background-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .cv-container {
+    background: var(--surface-color);
+    box-shadow: var(--shadow-lg);
+}
+
+[data-theme="dark"] .cv-header {
+    background: linear-gradient(135deg, #1e2738, #19202e);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-item,
+[data-theme="dark"] .social-link {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .contact-item:hover,
+[data-theme="dark"] .social-link:hover {
+    color: #9ebee6;
+}
+
+[data-theme="dark"] .social-link {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .social-link:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .cv-section {
+    background: rgba(40, 52, 74, 0.8);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .job-item {
+    border-left-color: var(--primary-color);
+}
+
+[data-theme="dark"] .job-item::before {
+    background: var(--primary-color);
+    border: 3px solid var(--surface-color);
+}
+
+[data-theme="dark"] .tech-tag,
+[data-theme="dark"] .skill-tag {
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .tech-tag:hover,
+[data-theme="dark"] .skill-tag:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .skill-progress {
+    background: var(--accent-color);
+}
+
+[data-theme="dark"] .education-institution a {
+    color: #9ebee6;
+}
+
+[data-theme="dark"] .education-institution a:hover {
+    color: #ffffff;
+}
+
+[data-theme="dark"] .language-indicator {
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .cv-footer {
+    background: var(--background-color);
+    border-top: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .footer-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .footer-link:hover {
+    color: var(--primary-color);
+}
+
+/* Dark theme loading and error states */
+[data-theme="dark"] .loading,
+[data-theme="dark"] .error {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .error i {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] .error h2 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .error button {
+    background: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .error button:hover {
+    background: #fe4d43;
+}
+
+/* Smooth transitions for theme switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Theme toggle button dark mode styling */
+[data-theme="dark"] .theme-toggle {
+    background: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: #3d7ab8;
+}
+
+/* Responsive adjustments for theme toggle */
+@media (max-width: 768px) {
+    .theme-toggle {
+        top: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+    
+    .theme-toggle i {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .theme-toggle i {
+        font-size: 12px;
+    }
+}
