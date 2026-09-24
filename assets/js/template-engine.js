@@ -170,13 +170,19 @@ class CVTemplateEngine {
     }
 
     renderEducation(edu) {
+        // A qualification can have a single year or a start/end date range.
+        const dates = edu.year != null ? [edu.year] : [edu.start, edu.end];
+        const period = [...new Set(dates
+            .filter(date => date != null && date !== '')
+            .map(date => this.formatDate(String(date))))].join(' - ');
+
         return `
             <div class="education-item">
                 <div class="education-header">
                     <h3 class="education-institution">
                         ${edu.institution}
                     </h3>
-                    <div class="education-period">${this.formatDate(edu.start)} - ${this.formatDate(edu.end)}</div>
+                    ${period ? `<div class="education-period">${period}</div>` : ''}
                 </div>
                 <div class="education-details">
                     <div class="education-degree">${edu.area}</div>
