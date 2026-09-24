@@ -10,8 +10,12 @@
     "label": "Raktáros és targoncavezető",
     "image": "assets/images/laszlo-olah.png",
     "website": "https://lazlo-ola.github.io",
-    "email": "laszlo.zsolt.olah@proton.me",
-    "phone": "+36707572848",
+    "email": {
+      "ciphertext": "wNYrHbZnn7k/FoMAV2uAKny1xHzLfcG1o+33Vy8JSZ0="
+    },
+    "phone": {
+      "ciphertext": "TDLeMINdJUBZyUFsx4ye6Q=="
+    },
     "location": "Vác",
     "profiles": []
   },

@@ -24,9 +24,9 @@ class CVTemplateEngine {
                 <div class="contact-section">
                     <div class="contact-info">
                         <i class="bi bi-telephone"></i>
-                        <a href="tel:${data.basics.phone}" class="contact-item">${data.basics.phone}</a>
+                        <button type="button" class="contact-item contact-reveal" data-contact="phone">Telefonszám megjelenítése</button>
                         <i class="bi bi-envelope"></i>
-                        <a href="mailto:${data.basics.email}" class="contact-item">${data.basics.email}</a>
+                        <button type="button" class="contact-item contact-reveal" data-contact="email">E-mail megjelenítése</button>
                         <i class="bi bi-geo-alt"></i><span class="contact-item">${data.basics.location}</span>
                         <i class="bi bi-globe"></i>
                         <a href="${data.basics.website}" target="_blank" class="contact-item">${data.basics.website}</a>
@@ -264,10 +264,37 @@ class CVTemplateEngine {
 
         if (container) {
             container.innerHTML = html;
-            // Setup decryption handlers after rendering
-
+            this.setupDecryptionHandlers(data.basics, container);
         }
         return html;
+    }
+
+    setupDecryptionHandlers(basics, container) {
+        container.querySelectorAll('[data-contact]').forEach(button => {
+            let revealing = false;
+            const reveal = async () => {
+                if (revealing) return;
+                revealing = true;
+                try {
+                    const kind = button.dataset.contact;
+                    const value = await dec(basics[kind].ciphertext, 'https://mail.google.com');
+                    const anchor = document.createElement('a');
+                    anchor.href = `${kind === 'phone' ? 'tel:' : 'mailto:'}${value}`;
+                    anchor.textContent = value;
+                    anchor.className = 'contact-item';
+                    const hadFocus = document.activeElement === button;
+                    button.replaceWith(anchor);
+                    if (hadFocus) anchor.focus();
+                } catch (error) {
+                    revealing = false;
+                    button.textContent = 'Újrapróbálkozás';
+                    console.error('Contact reveal failed:', error);
+                }
+            };
+            button.addEventListener('mouseenter', reveal);
+            button.addEventListener('focus', reveal);
+            button.addEventListener('click', reveal);
+        });
     }
 
 }
