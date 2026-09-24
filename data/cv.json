@@ -11,10 +11,12 @@
     "image": "assets/images/laszlo-olah.png",
     "website": "https://lazlo-ola.github.io",
     "email": {
-      "ciphertext": "wNYrHbZnn7k/FoMAV2uAKny1xHzLfcG1o+33Vy8JSZ0="
+      "ciphertext": "wNYrHbZnn7k/FoMAV2uAKny1xHzLfcG1o+33Vy8JSZ0=",
+      "maskLength": 27
     },
     "phone": {
-      "ciphertext": "TDLeMINdJUBZyUFsx4ye6Q=="
+      "ciphertext": "TDLeMINdJUBZyUFsx4ye6Q==",
+      "maskLength": 12
     },
     "location": "Vác",
     "profiles": []

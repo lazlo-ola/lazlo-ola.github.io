@@ -24,10 +24,10 @@ class CVTemplateEngine {
                 <div class="contact-section">
                     <div class="contact-info">
                         <i class="bi bi-telephone"></i>
-                        <button type="button" class="contact-item contact-reveal" data-contact="phone">Telefonszám megjelenítése</button>
+                        <button type="button" class="contact-item contact-value contact-reveal" data-contact="phone" aria-label="Telefonszám megjelenítése">${this.maskContact(data.basics.phone)}</button>
                         <i class="bi bi-envelope"></i>
-                        <button type="button" class="contact-item contact-reveal" data-contact="email">E-mail megjelenítése</button>
-                        <i class="bi bi-geo-alt"></i><span class="contact-item">${data.basics.location}</span>
+                        <button type="button" class="contact-item contact-value contact-reveal" data-contact="email" aria-label="E-mail megjelenítése">${this.maskContact(data.basics.email)}</button>
+                        ${data.basics.location ? `<i class="bi bi-geo-alt"></i><span class="contact-item">${data.basics.location}</span>` : ''}
                         <i class="bi bi-globe"></i>
                         <a href="${data.basics.website}" target="_blank" class="contact-item">${data.basics.website}</a>
                     </div>
@@ -186,7 +186,7 @@ class CVTemplateEngine {
                 </div>
                 <div class="education-details">
                     <div class="education-degree">${edu.area}</div>
-                    <div class="education-major">${edu.location}</div>
+                    <div class="education-major">${edu.location || ''}</div>
                 </div>
             </div>
         `;
@@ -269,6 +269,11 @@ class CVTemplateEngine {
         return html;
     }
 
+    maskContact(contact) {
+        const length = typeof contact === 'string' ? contact.length : contact.maskLength;
+        return '*'.repeat(Number.isInteger(length) && length > 0 ? length : 20);
+    }
+
     setupDecryptionHandlers(basics, container) {
         container.querySelectorAll('[data-contact]').forEach(button => {
             let revealing = false;
@@ -277,11 +282,15 @@ class CVTemplateEngine {
                 revealing = true;
                 try {
                     const kind = button.dataset.contact;
-                    const value = await dec(basics[kind].ciphertext, 'https://mail.google.com');
+                    const contact = basics[kind];
+                    // Placeholder CV contacts are plain text; real contacts stay encrypted.
+                    const value = typeof contact === 'string'
+                        ? contact
+                        : await dec(contact.ciphertext, 'https://mail.google.com');
                     const anchor = document.createElement('a');
                     anchor.href = `${kind === 'phone' ? 'tel:' : 'mailto:'}${value}`;
                     anchor.textContent = value;
-                    anchor.className = 'contact-item';
+                    anchor.className = 'contact-item contact-value';
                     const hadFocus = document.activeElement === button;
                     button.replaceWith(anchor);
                     if (hadFocus) anchor.focus();

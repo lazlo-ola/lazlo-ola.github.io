@@ -66,6 +66,106 @@
             }
         }
 
+        // Fallback CV data for when fetch fails - generic template filler
+        const fallbackCVData = {
+            "meta": {
+                "source": {
+                    "type": "html",
+                    "title": "John Doe CV"
+                }
+            },
+            "basics": {
+                "name": "John Doe",
+                "label": "Senior Janitor Intern",
+                "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Albert_Einstein_Head_cleaned.jpg/500px-Albert_Einstein_Head_cleaned.jpg?20251103195240",
+                "website": "https://acme.acme",
+                "email": "johnny1988@acme.acme",
+                "phone": "+36 20 123 4567",
+                "profiles": [
+                    {
+                        "network": "LinkedIn",
+                        "url": "https://www.linkedin.com/in/404"
+                    },
+                    {
+                        "network": "GitHub",
+                        "url": "https://github.com/404"
+                    },
+                    {
+                        "network": "GitLab",
+                        "url": "https://gitlab.com/404"
+                    }
+                ]
+            },
+            "summary": [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel augue nec justo facilisis tristique. Sed non sem at sapien suscipit ullamcorper. Cras non purus vitae lacus pulvinar varius. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse potenti. Nulla facilisi. Donec sed nisl eu libero aliquet gravida. Mauris in mi non ipsum sagittis laoreet. Proin a sem nec tortor hendrerit fermentum. Curabitur at lacus non nulla commodo tincidunt. Aliquam erat volutpat."
+            ],
+            "work": [
+                {
+                    "company": "Tech Company",
+                    "position": "Janitor",
+                    "start": "2020",
+                    "end": "Present",
+                    "highlights": [
+                        "Phasellus vitae nunc at arcu luctus dignissim. Praesent ut dui nec erat cursus bibendum. Nam feugiat, lectus et aliquet luctus, justo lorem pharetra purus, vitae tincidunt justo nibh eget neque. Integer dictum urna sed sapien hendrerit, a interdum velit dictum. Morbi et urna ut libero luctus tristique. Aenean finibus, erat vitae dapibus fermentum, neque odio efficitur lorem, non hendrerit risus arcu sit amet erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
+                    ],
+                    "technologies": ["Mop", "Bucket", "Broom"]
+                }
+            ],
+            "skills": {
+                "technical": [
+                    {
+                        "group": "Janitor utilities",
+                        "items": [
+                            {"name": "Mop", "proficiencyPercent": 85},
+                            {"name": "Bucket", "proficiencyPercent": 70},
+                            {"name": "Broom", "proficiencyPercent": 75}
+                        ]
+                    },
+                    {
+                        "group": "Auxiliari facilities",
+                        "items": [
+                            {"name": "Vacuum cleaner", "proficiencyPercent": 15},
+                            {"name": "Sponges", "proficiencyPercent": 30},
+                            {"name": "Dustpan", "proficiencyPercent": 65}
+                        ]
+                    }
+                ],
+                "soft": [
+                    "Problem Solving",
+                    "Teamwork",
+                    "Communication",
+                    "Adaptability"
+                ]
+            },
+            "education": [
+                {
+                    "institution": "University of Life",
+                    "area": "Janitor course",
+                    "studyType": "PhD",
+                    "start": "2010",
+                    "end": "2020"
+                }
+            ],
+            "languages": [
+                {
+                    "language": "Irish [drunken]",
+                    "fluency": "native",
+                    "percentage": 65
+                },
+                {
+                    "language": "English",
+                    "fluency": "intermediate",
+                    "percentage": 40
+                }
+            ],
+            "extras": {
+                "footerLink": {
+                    "label": "https://acme.acme",
+                    "url": "https://acme.acme"
+                }
+            }
+        };
+
         class CVApplication {
             constructor() {
                 this.templateEngine = new CVTemplateEngine();
@@ -84,7 +184,16 @@
             }
 
             async loadCVData() {
-                this.cvData = await load_CV_JSON_Data('data/cv.json');
+                if (window.location.protocol === 'file:') {
+                    this.cvData = fallbackCVData;
+                    return;
+                }
+                try {
+                    this.cvData = await load_CV_JSON_Data('data/cv.json');
+                } catch (error) {
+                    console.warn('Using placeholder CV data because JSON could not be loaded.', error);
+                    this.cvData = fallbackCVData;
+                }
             }
 
             renderCV() {
